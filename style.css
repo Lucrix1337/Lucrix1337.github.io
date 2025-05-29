@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #1a0033, #0d001a, #2d0066, #1a0033);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.content {
+    text-align: center;
+    padding: 20px;
+}
+
+/* ГЛОБАЛЬНЫЙ GLOW ЭФФЕКТ ДЛЯ НИКНЕЙМА */
+.nickname {
+    color: white;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #9d00ff, 
+                 0 0 20px #9d00ff,
+                 0 0 30px #9d00ff;
+    animation: glowPulse 2s ease-in-out infinite alternate;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes glowPulse {
+    0% {
+        text-shadow: 0 0 10px #9d00ff,
+                     0 0 20px #9d00ff,
+                     0 0 30px #9d00ff;
+    }
+    100% {
+        text-shadow: 0 0 15px #9d00ff,
+                     0 0 30px #ff00ff,
+                     0 0 45px #ff00ff;
+    }
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.social-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: white;
+    transition: all 0.3s ease;
+}
+
+/* Эффекты при наведении */
+.social-icon:nth-child(1):hover svg {
+    fill: #9d00ff;
+    filter: drop-shadow(0 0 14px rgba(0, 136, 204, 0.7));
+}
+
+.social-icon:nth-child(2):hover svg {
+    fill: #9d00ff;
+    filter: drop-shadow(0 0 14px rgba(0, 119, 255, 0.7));
+}
+
+.social-icon:nth-child(3):hover svg {
+    fill: #9d00ff;
+    filter: drop-shadow(0 0 14px rgba(88, 101, 242, 0.7));
+}
+
+/* Анимации появления */
+.nickname.show {
+    animation: slideUp 0.8s ease-out forwards, 
+               glowPulse 2s ease-in-out infinite alternate;
+}
+
+.social-links.show {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+@keyframes slideUp {
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
